@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
         - name: api
-          image: johary94/todo-api:latest
+          image: johary94/todo-api:v1
           env:
             - name: DB_HOST
               value: "todo-db-service"
