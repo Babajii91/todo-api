@@ -52,6 +52,11 @@ Technologies utilisées dans le projet :
 
 ![Dockerisation](images/8.png)
 
+![Dockerisation](images/9.png)
+
+![Dockerisation](images/10.png)
+
+
 #### Création de la VM azure :
 
 ![VM](images/2.png)
