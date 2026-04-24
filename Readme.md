@@ -93,6 +93,51 @@ avec Docker comme driver. La commande `kubectl get nodes` a confirmé que le clu
 
 #### déploiement de la VM et Orchestration avec Kubernetes :
 
+![VM](images/16.png)
+
+![VM](images/17.png)
+
+![VM](images/18.png)
+
+![VM](images/19.png)
+
+![VM](images/20.png)
+
+![VM](images/21.png)
+
+![VM](images/22.png)
+
+![VM](images/23.png)
+
+![VM](images/24.png)
+
+
+- J’ai déployé mon application dans un cluster Kubernetes installé dans ma VM Azure. 
+Après avoir appliqué les manifests (Deployments, Services, Namespace), les pods 
+étaient en état Running et l’API était accessible depuis l’intérieur du cluster via 
+le NodePort 30080. La commande `curl http://192.168.49.2:30080/health` a confirmé 
+que l’application fonctionnait correctement dans Kubernetes.
+
+- J’ai ensuite configuré un service de type LoadBalancer. Minikube ne pouvant pas 
+créer une IP publique dans Azure, l’adresse externe reste en état <pending>. 
+L’utilisation de `minikube tunnel` permet de simuler un LoadBalancer local, mais 
+ne rend pas l’application accessible via l’IP publique de la VM Azure.
+
+- Ainsi, l’application tourne correctement dans le cluster Kubernetes, mais 
+l’exposition via l’IP publique nécessite une configuration réseau supplémentaire 
+ou un autre type d’orchestrateur (AKS, Nginx Ingress, ou un reverse proxy).
+
+- La solution adaptée que je pourrais faire dans ce contexte consiste à installer un Ingress Controller 
+(NGINX) dans Minikube. L’Ingress permet d’exposer l’application via le port 80 
+de la VM, un port qui peut être ouvert dans le Network Security Group Azure. 
+L’Ingress redirige ensuite le trafic HTTP vers le service Kubernetes interne 
+(todo-api-service).
+
+- Je me suis arrêté à cette étape.
+
+### Pipeline CI/CD :
+
+
 ### Architecture du projet :
 
 ![Architecture du projet](images/1.png)
