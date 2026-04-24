@@ -57,9 +57,39 @@ Technologies utilisées dans le projet :
 ![Dockerisation](images/10.png)
 
 
-#### Création de la VM azure :
+#### Création de la VM azure + clé SSH :
 
 ![VM](images/2.png)
+
+
+![VM](images/11.png)
+
+
+![VM](images/12.png)
+
+
+![VM](images/13.png)
+
+
+![VM](images/14.png)
+
+
+![VM](images/15.png)
+
+
+- Pour cette partie, j’ai créé une machine virtuelle Ubuntu 22.04 sur Microsoft Azure. 
+J’ai rencontré une difficulté lors de la connexion SSH : la clé privée n’avait pas 
+les bonnes permissions. Après avoir déplacé la clé dans un dossier dédié et appliqué 
+chmod 600, la connexion SSH a fonctionné.
+
+- Une fois connecté à la VM, j’ai installé Docker et Docker Compose en ajoutant le 
+dépôt officiel Docker, puis en installant les paquets docker-ce, docker-cli, 
+containerd.io et docker-compose-plugin.
+
+- J’ai ensuite installé Kubernetes local via Minikube. Après avoir téléchargé le 
+binaire, je l’ai installé dans /usr/local/bin puis j’ai démarré un cluster Kubernetes 
+avec Docker comme driver. La commande `kubectl get nodes` a confirmé que le cluster 
+était opérationnel.
 
 #### déploiement de la VM et Orchestration avec Kubernetes :
 
